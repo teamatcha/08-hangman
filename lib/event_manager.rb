@@ -2,14 +2,14 @@ require 'json'
 
 module Event_manager
   def list_json_files_saved
-    Dir.glob('**/*.json').each do |f|
+    Dir.glob('**/*.json').map do |f|
       File.basename(f)
     end
   end
 
   def load_file
-    p list_file = list_json_files_saved
-    puts "Choose the file to load among the list starting at 1"
+    p list_file = list_json_files_saved.sort
+    puts "Choose the file to load among the list from 1 to #{list_file.size}"
     index = gets.chomp
     file_to_load = list_file[index.to_i - 1]
 
@@ -30,5 +30,11 @@ module Event_manager
       file.write(temp_hash.to_json)
     end
     puts "Game saved"
+  end
+
+  def random_word
+    file = File.open('5desk.txt')
+    file_lines = file.readlines()
+    file_lines.collect(&:strip).select { |word| word.length.between?(5, 12) }.sample.downcase
   end
 end
