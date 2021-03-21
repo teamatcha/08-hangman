@@ -17,3 +17,5 @@ You will be building a simple command line Hangman game where one player plays a
 
 ---
 Learned about serialization. Used JSON to save and load files.
+
+Improvement : When user input, there is no check as to whether it is onlt a letter or a string or a special character.  
